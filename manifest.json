@@ -8,14 +8,21 @@
   "defaultLocale": "en",
   "private": true,
   "location": "ticket_sidebar",
-  "version": "1.0",
+  "version": "1.0.1",
   "frameworkVersion": "1.0",
   "parameters": [
   {
-    "name": "wordsPerMinutedefault",
+    "name": "endUserSpeed",
     "type": "number",
+    "default": "180",
     "required": true,
     "helptext": "How many words per minute can you read? The average for an adult reading off a monitor is about 180."
-    }
-    ]
+  },
+  {
+    "name": "agentSpeedDefault",
+    "type": "number",
+    "required": true,
+    "helptext": "How many words per minute can your Agents read? You can also let them set it with a custom user field."
+  }
+  ]
 }
