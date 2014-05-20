@@ -1,7 +1,5 @@
 (function() {
-
   return {
-
     requests: {
         fetchUser: function () {
             var currentUser = this.currentUser();
@@ -12,13 +10,11 @@
             };
         }
     },
-
     events: {
       'app.activated':'minRead',
       'fetchUser.done': 'success',
       'fetchUser.fail': 'failure'
     },
-
     success: function(data) {
         console.log(data.user.user_fields.words_per_minute);
     },
@@ -26,29 +22,22 @@
         console.log("FAIL");
     },
      minRead: function() {
-        
         var wordsPerMinute = this.setting('endUserSpeed'), // how fast most people can read on a monitor according to [Wikipedia](http://en.wikipedia.org/wiki/Words_per_minute#Reading_and_comprehension)
             currentComment = this.comment().text(), // the text of the current comment being entered
             words = currentComment.split(' '), // substring array of each word in the comment
             length = words.length, // size of the array
             time = length / wordsPerMinute, // how many minutes to read floating point integer
             minutes = Math.round(time), // how many minutes to read rounded up to nearest integer
-            plural,
             string;
         if (minutes < 1) {
-            string = 'less than a';
-        } else if (minutes == 1) {
-            string = minutes;
+            string = 'less than 1';
         } else {
-            plural = true;
             string = minutes;
         }
         this.switchTo('show', {
             minReadRounded: string,
-            plural: plural
         });
-        var plural2,
-            string2,
+        var string2,
             ticket = this.ticket(),
             ticketComments = ticket.comments(),
             ticketCommentsMap = _.map(ticketComments, function(comment){ return comment.value(); }), // array of substrings where each substring is an entire comment on the ticket
@@ -58,21 +47,15 @@
             test2 = ticketCommentsMapJoinedSplitSize / this.setting('agentSpeedDefault'), // how many minutes to read floating point integer
             minReadRoundedAll = Math.round(test2); // how many minutes to read rounded up to nearest integer
         if (minReadRoundedAll < 1) {
-            string2 = 'less than a';
-        } else if (minReadRoundedAll == 1) {
-            string2 = minReadRoundedAll;
+            string2 = 'less than 1';
         } else {
-            plural2 = true;
             string2 = minReadRoundedAll;
         }
         this.switchTo('show', {
-            plural: plural,
             minReadRounded: string,
             minReadRoundedAll: string2,
-            plural2: plural2
         });
-
-        this.ajax('fetchUser');
+        // this.ajax('fetchUser');
     }
 };
 }());
