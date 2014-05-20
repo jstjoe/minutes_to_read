@@ -1,11 +1,37 @@
 (function() {
 
   return {
-    events: {
-      'app.activated':'minRead'
+
+    requests: {
+        fetchUser: function () {
+            var currentUser = this.currentUser();
+            var currentUserID = currentUser.id();
+            return {
+                url: '/api/v2/users/' + currentUserID + '.json',
+                type: 'GET',
+            };
+        }
     },
 
-    minRead: function() {
+    events: {
+      'app.activated':'minRead',
+      'fetchUser.done': 'success',
+      'fetchUser.fail': 'failure'
+    },
+
+    success: function(data) {
+        console.log(data.user.user_fields.words_per_minute);
+    },
+
+    failure: function(data) {
+        console.log("FAIL");
+    },
+
+    minRead: function(data) {
+
+        var ticket = this.ticket();
+        var ticketCommentsMap = _.map(ticketComments, function(comment){ return comment.value(); });
+
         var wordsPerMinute = 180; // how fast most people can read on a monitor according to [Wikipedia](http://en.wikipedia.org/wiki/Words_per_minute#Reading_and_comprehension)
         var comment = this.comment().text(); // the text of the current comment being entered
         var CommentArray = comment.split(' '); // substring array of each word in the comment
@@ -40,6 +66,8 @@
             plural: plural,
             minReadRounded: minutes
         });
+
+        this.ajax('fetchUser');
     }
 };
 }());
