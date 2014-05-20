@@ -1,2 +1,2 @@
-<h4>Your comment will take: <span class="muted">{{minReadRounded}} min read</span></h4>
+<h4>Your comment will take: <span class="muted">{{minReadRounded}} min to read</span></h4>
 <h4>Previous <span class="muted">{{minReadRoundedAll}} min read</span></h4>
