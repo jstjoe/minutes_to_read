@@ -1,13 +1,21 @@
 {
-  "name": "minRead",
+  "name": "Minutes to Read",
   "author": {
-    "name": "Jeremiah",
+    "name": "Jeremiah & Joe",
     "email": "jcurrier@zendesk.com",
-    "url": "https://github.com/jeremiahcurrier"
+    "url": "https://github.com/jstjoe/minutes_to_read"
   },
   "defaultLocale": "en",
   "private": true,
   "location": "ticket_sidebar",
   "version": "1.0",
-  "frameworkVersion": "1.0"
+  "frameworkVersion": "1.0",
+  "parameters": [
+  {
+    "name": "wordsPerMinutedefault",
+    "type": "number",
+    "required": true,
+    "helptext": "How many words per minute can you read? The average for an adult reading off a monitor is about 180."
+    }
+    ]
 }

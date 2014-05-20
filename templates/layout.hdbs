@@ -2,10 +2,9 @@
   <span class="logo"/>
   <h3>{{setting "name"}}</h3>
 </header>
-<button class="btn btn-primary">How long will it take me to read that comment?</button>
 <section data-main/>
 <footer>
-  <a href="mailto:{{author.email}}">
+  <p>Brought to you by: <a href="mailto:{{author.email}}">
     {{author.name}}
-  </a>
+  </a></p>
 </footer>

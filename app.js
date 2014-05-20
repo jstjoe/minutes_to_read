@@ -2,22 +2,44 @@
 
   return {
     events: {
-      'click .btn-primary':'minRead',
       'app.activated':'minRead'
     },
 
     minRead: function() {
+        var wordsPerMinute = 180; // how fast most people can read on a monitor according to [Wikipedia](http://en.wikipedia.org/wiki/Words_per_minute#Reading_and_comprehension)
+        var comment = this.comment().text(); // the text of the current comment being entered
+        var CommentArray = comment.split(' '); // substring array of each word in the comment
+        var CommentArraySize = CommentArray.length; // size of the array
+        var test = CommentArraySize / wordsPerMinute; // how many minutes to read floating point integer
+        var minReadRounded = Math.round(test); // how many minutes to read rounded up to nearest integer
+        var plural;
+        var minutes;
+        if (minReadRounded < 1) {
+            minutes = 'less than a';
+        } else if (minReadRounded == 1) {
+            minutes = minReadRounded;
+        } else {
+            plural = true;
+            minutes = minReadRounded;
+        }
+        this.switchTo('moreThanMinute', {
+            minReadRounded: minutes,
+            plural: plural
+        });
 
-    var comment = this.comment();
-    console.log(comment);
-    var wordsPerMinute = 180; // how fast you can read 
-    var comment = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.";
-    var commentArray = comment.split(' '); // array of substrings split by space
-    var commentArraySize = commentArray.length; // number of words
-    var minRead = commentArraySize / wordsPerMinute; // how many minutes it takes to read
-    var minReadRounded = Math.round(minRead);
-    console.log("It will take you about " + minReadRounded + " minutes to read the comment.");
+        var ticket = this.ticket();
+        var ticketComments = ticket.comments();
+        var ticketCommentsMap = _.map(ticketComments, function(comment){ return comment.value(); }); // array of substrings where each substring is an entire comment on the ticket
+        var ticketCommentsMapJoined = ticketCommentsMap.join(); // turn ticketCommentsMap into an entire string of all comments together
+        var ticketCommentsMapJoinedSplit = ticketCommentsMapJoined.split(' '); // turn ticketCommentsMapJoined into array of substrings, all words
+        var ticketCommentsMapJoinedSplitSize = ticketCommentsMapJoinedSplit.length; // number of substrings/words in ticketCommentsMapJoinedSplit
+        var test2 = ticketCommentsMapJoinedSplitSize / this.setting('wordsPerMinutedefault'); // how many minutes to read floating point integer
+        var minReadRoundedAll = Math.round(test2); // how many minutes to read rounded up to nearest integer
+        this.switchTo('moreThanMinute', {
+            minReadRoundedAll: minReadRoundedAll,
+            plural: plural,
+            minReadRounded: minutes
+        });
     }
-  };
-
+};
 }());
