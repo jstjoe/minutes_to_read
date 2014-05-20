@@ -43,7 +43,7 @@
             plural = true;
             string = minutes;
         }
-        this.switchTo('moreThanMinute', {
+        this.switchTo('show', {
             minReadRounded: string,
             plural: plural
         });
@@ -65,11 +65,7 @@
             plural2 = true;
             string2 = minReadRoundedAll;
         }
-        this.switchTo('moreThanMinute', {
-            minReadRounded: string2,
-            plural: plural
-        });
-        this.switchTo('moreThanMinute', {
+        this.switchTo('show', {
             plural: plural,
             minReadRounded: string,
             minReadRoundedAll: string2,

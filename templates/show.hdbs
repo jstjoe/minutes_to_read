@@ -1,2 +1,3 @@
-<p>the comment you are typing</p>
-<p>all comments on this ticket</p>
+<p>It will take you <span>{{minReadRounded}}</span> minute{{#if plural}}s{{/if}} to read the comment you entered.</p>
+<p>and</p>
+<p>It will take the average person <span>{{minReadRoundedAll}}</span> minute{{#if plural2}}s{{/if}} to read all of the other comments.</p>
