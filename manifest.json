@@ -21,6 +21,7 @@
   {
     "name": "agentSpeedDefault",
     "type": "number",
+    "default": "180",
     "required": true,
     "helptext": "How many words per minute can your Agents read? You can also let them set it with a custom user field."
   }
