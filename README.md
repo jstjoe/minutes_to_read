@@ -10,4 +10,4 @@ This app estimates how long it will take the agent to read the current ticket's 
 Please submit bug reports to [Jeremiah](https://github.com/jeremiahcurrier) or [Joe](https://github.com/jstjoe). Pull requests are always welcome.
 
 ### Screenshot(s):
-[put your screenshots down here.]
+![](http://i.imgur.com/Ps5mF95.png)
