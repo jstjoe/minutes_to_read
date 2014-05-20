@@ -48,6 +48,7 @@
             plural: plural
         });
         var plural2,
+            string2,
             ticket = this.ticket(),
             ticketComments = ticket.comments(),
             ticketCommentsMap = _.map(ticketComments, function(comment){ return comment.value(); }), // array of substrings where each substring is an entire comment on the ticket
