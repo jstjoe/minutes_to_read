@@ -1,3 +1,6 @@
+## Moved
+The latest version of this can be found in [Zendesk Labs](https://github.com/zendesklabs/time-to-read)
+
 # Minutes to Read App
 
 How long does it take to read through all the comments on a ticket?
